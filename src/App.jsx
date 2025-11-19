@@ -6,6 +6,8 @@ import NavBar from "./NavBar";
 import Services from "./Services";
 import OurTeam from "./OurTeam";
 import ContactPageTemplate from "./Contact";
+import Gallery from "./Gallery";
+import AdminLogin from "./AdminLogin";
 function App() {
   return (
     <Router>
@@ -17,6 +19,8 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/ourteam" element={<OurTeam />} />
         <Route path="/contact" element={<ContactPageTemplate />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/login" element={<AdminLogin />} />
       </Routes>
     </Router>
   );
