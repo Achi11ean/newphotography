@@ -1,124 +1,147 @@
 import React, { useState } from "react";
-import { GiAcorn } from "react-icons/gi";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 
-// —— Fake, reusable sample data (non‑medical / general business) ——
+// 🌿 Photography-themed team data
 const teamMembers = [
   {
-    name: "Avery Brooks",
-    role: "Creative Director",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800",
-    bio: `I lead branding and creative strategy across web, social, and print.\n\n— —\n\nI love turning fuzzy ideas into crisp visuals and customer moments. Outside of work: coffee tasting, indie films, and city photography.`,
-    style: "border-blue-300 bg-blue-50 hover:shadow-blue-300/50",
+    name: "Amara Devon",
+    role: "Lead Photographer",
+    image:
+      "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=800&auto=format&fit=crop",
+    bio: `Founder and creative mind behind Amara’s Photo Hut.
+
+I specialize in portrait, nature, and lifestyle photography with a warm, natural-light style.
+
+I believe the most meaningful images come from calm, authentic moments — where emotion and environment blend into something timeless.`,
     backgroundImage:
-      "url('https://media.istockphoto.com/id/636208094/photo/tropical-jungle.jpg?s=612x612&w=0&k=20&c=3S-pXUxM-gWEPK9ocEPU-KG3clexrw6iIru-8QYEfl0=')",
+      "url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=2400&auto=format&fit=crop')",
   },
   {
-    name: "Kai Morgan",
-    role: "Project Manager",
-    image: "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=800",
-    bio: `Organizer-in-chief. I coordinate timelines, budgets, and cross‑team communication so launches feel calm and predictable.\n\n— —\n\nI’m obsessed with color‑coded boards, crisp handoffs, and celebrating wins. Weekend hobbies: trail runs and crossword battles.`,
-    style: "border-blue-300 bg-blue-50 hover:shadow-blue-300/50",
+    name: "Lena Hart",
+    role: "Assistant Photographer",
+    image:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop",
+    bio: `I capture candid details, soft transitions, and behind-the-scenes magic.
+
+My style mixes natural tones with dreamy composition.
+
+On weekends, you'll find me hiking with my camera or editing in a cozy café.`,
     backgroundImage:
-      "url('https://images.unsplash.com/photo-1563467743682-704cc8ccb9c6?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJldHR5JTIwZmxvd2Vyc3xlbnwwfHwwfHx8MA%3D%3D')",
+      "url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2400&auto=format&fit=crop')",
   },
   {
-    name: "Remy Chen",
-    role: "Full‑Stack Developer",
-    image: "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=80&w=800",
-    bio: `I build fast, accessible web apps with React on the front and Python/Node on the back.\n\n— —\n\nI care about performance, delightful micro‑interactions, and clean APIs. When not coding: mechanical keyboards and jazz piano.`,
-    style: "border-blue-300 bg-blue-50 hover:shadow-blue-300/50",
+    name: "Elias Monroe",
+    role: "Editing & Retouching Expert",
+    image:
+      "https://images.unsplash.com/photo-1548142813-c348350df52b?q=80&w=800&auto=format&fit=crop",
+    bio: `I turn raw captures into polished, gallery-worthy images.
+
+My work focuses on fine color grading, film-like tones, and natural retouching.
+
+I love warm palettes, golden-hour accents, and images that feel alive.`,
     backgroundImage:
-      "url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=2400')",
+      "url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2400&auto=format&fit=crop')",
   },
   {
-    name: "Sloane Rivera",
-    role: "Content Strategist",
-    image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800",
-    bio: `Words with purpose. I plan editorial calendars, UX copy, and SEO that actually reads like a human wrote it.\n\n— —\n\nI love crisp headlines, helpful CTAs, and brand voice guides. Side quests: pottery and street food adventures.`,
-    style: "border-blue-300 bg-blue-50 hover:shadow-blue-300/50",
+    name: "Sienna Brooks",
+    role: "Client Experience & Styling",
+    image:
+      "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=800&auto=format&fit=crop",
+    bio: `I help clients feel confident, peaceful, and beautifully prepared for their session.
+
+Wardrobe curation, accessory guidance, and posing support are my passion.
+
+Outside the studio: tea tasting, plant collecting, and vintage markets.`,
     backgroundImage:
-      "url('https://images.unsplash.com/photo-1503264116251-35a269479413?q=80&w=2400')",
+      "url('https://images.unsplash.com/photo-1455849318743-b2233052fcff?q=80&w=2400&auto=format&fit=crop')",
   },
   {
-    name: "Jules Patel",
-    role: "Product Designer",
-    image: "https://media.istockphoto.com/id/1289220545/photo/beautiful-woman-smiling-with-crossed-arms.jpg?s=612x612&w=0&k=20&c=qmOTkGstKj1qN0zPVWj-n28oRA6_BHQN8uVLIXg0TF8=",
-    bio: `Designing simple, elegant flows for complex problems.\n\n— —\n\nFigma fanatic, prototyping nerd, and accessibility advocate. Favorite things: microcopy, grids, and a good 8px rhythm.`,
-    style: "border-blue-300 bg-blue-50 hover:shadow-blue-300/50",
+    name: "Rowan Ellis",
+    role: "Nature Location Scout",
+    image:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=800&auto=format&fit=crop",
+    bio: `I find the hidden gems — forests, cliffs, gardens, shorelines — where the most magical photos are taken.
+
+I believe environment shapes emotion in every photo.
+
+My life is part explorer, part mapmaker, all nature lover.`,
     backgroundImage:
-      "url('https://media.istockphoto.com/id/1318629326/photo/a-beautiful-brown-horses-in-the-farm-during-the-sunrise.jpg?s=612x612&w=0&k=20&c=eTgB9Nvks_TN8jz_GxcSfsDTZd_J4XYf6qWXl1Vy5vI=')",
+      "url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=2400&auto=format&fit=crop')",
   },
   {
-    name: "Riley Quinn",
-    role: "Marketing Lead",
-    image: "https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=800",
-    bio: `I connect products to people with positioning, lifecycle campaigns, and analytics.\n\n— —\n\nAsk me about launch playbooks, UTM hygiene, and delightful onboarding emails. Off the clock: cycling and bouldering.`,
-    style: "border-blue-300 bg-blue-50 hover:shadow-blue-300/50",
+    name: "Milo Rivera",
+    role: "Studio Coordinator",
+    image:
+      "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=800&auto=format&fit=crop",
+    bio: `I make sure your session flows smoothly — booking, planning, scheduling, and support.
+
+I love meeting new clients and making photography feel easy, joyful, and stress-free.`,
     backgroundImage:
-      "url('https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=2400')",
+      "url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=2400&auto=format&fit=crop')",
   },
 ];
 
-// —— Component ——
-export default function OurTeamBlueTemplate() {
+export default function OurTeam() {
   const [selectedMember, setSelectedMember] = useState(null);
 
   return (
-    <div className="min-h-screen bg-blue-900 text-blue-50">
-      {/* Hero / Banner */}
+    <div className="min-h-screen bg-gradient-to-b from-emerald-900 via-green-900 to-stone-900 text-emerald-50">
+
+      {/* 🌿 Hero Banner */}
       <div
-        className="w-full border-b-4 h-80 md:h-96 bg-cover bg-center relative shadow-2xl"
+        className="w-full h-80 md:h-96 bg-cover bg-center relative shadow-2xl border-b-4 border-emerald-500/60"
         style={{
           backgroundImage:
-            "url('https://rare-gallery.com/uploads/posts/349940-4k-wallpaper.jpg')",
-          backgroundPosition: "center 70% ",
+            "url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=2400&auto=format&fit=crop')",
+          backgroundPosition: "center 60%",
         }}
       >
         <div className="absolute -bottom-8 left-1/2 -translate-x-1/2">
-          <div className="flex items-center gap-3 rounded-full border-2 border-blue-300/80 bg-blue-800/60 backdrop-blur px-6 py-3 shadow-xl">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">
+          <div className="flex items-center gap-3 rounded-full border-2 border-emerald-400 bg-white/20 backdrop-blur-xl px-8 py-3 shadow-2xl">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-emerald-950 tracking-widest">
               Our Team
             </h1>
           </div>
         </div>
       </div>
 
-      {/* Team grid */}
+      {/* 🌿 Team Grid */}
       <section className="max-w-6xl mx-auto px-4 pt-16 pb-20">
-        <p className="text-blue-100/90 text-center max-w-3xl mx-auto mb-10 leading-relaxed">
-          Meet the people who plan, design, build, and launch your ideas. This is a
-          reusable template—swap the names, roles, images, and bios to match any
-          business or portfolio.
+        <p className="text-emerald-100/85 text-center max-w-3xl mx-auto mb-10 leading-relaxed text-lg">
+          Meet the creative souls behind Amara’s Photo Hut —
+          a warm, nature-inspired photography studio built on storytelling,
+          artistry, and authentic connection.
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {teamMembers.map((m, i) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+          {teamMembers.map((m) => (
             <motion.button
               key={m.name}
               onClick={() => setSelectedMember(m)}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.99 }}
-              className={`text-left cursor-pointer rounded-3xl p-6 shadow-lg border-2 transition-all duration-300 ${m.style}`}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
+              className="text-left cursor-pointer rounded-3xl p-6 shadow-xl border-4 border-emerald-500/40 bg-white/80 
+                         backdrop-blur-md transition-all duration-300 hover:shadow-emerald-400/40"
             >
               <img
                 src={m.image}
                 alt={m.name}
-                className="w-24 h-24 rounded-2xl object-cover shadow-md"
+                className="w-24 h-24 rounded-2xl object-cover shadow-lg"
               />
+
               <div className="mt-4">
-                <h3 className="text-xl font-bold text-blue-900">
+                <h3 className="text-xl font-serif font-bold text-emerald-900">
                   {m.name}
                 </h3>
-                <p className="text-sm font-medium text-blue-700/80">
+                <p className="text-sm font-medium text-emerald-700/80">
                   {m.role}
                 </p>
               </div>
-<p className="mt-4 text-blue-900/80 bg-white/70 rounded-xl p-3 max-h-40 overflow-y-auto">
-  {m.bio.replaceAll("— —", "—")}
-</p>
 
+              <p className="mt-4 text-emerald-900/80 bg-white/70 rounded-xl p-3 max-h-40 overflow-y-auto leading-relaxed">
+                {m.bio}
+              </p>
             </motion.button>
           ))}
         </div>
@@ -126,14 +149,16 @@ export default function OurTeamBlueTemplate() {
         <div className="text-center mt-12">
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 rounded-full border-2 border-blue-300 bg-blue-800/60 px-6 py-3 font-semibold hover:bg-blue-700/70 hover:shadow-lg transition"
+            className="inline-flex items-center gap-2 rounded-full border-2 border-emerald-500 bg-white/20 
+                       backdrop-blur-xl px-8 py-3 font-semibold text-emerald-50 hover:bg-emerald-900/20 
+                       hover:shadow-emerald-300 transition"
           >
-            Talk to our team
+            Contact Our Studio
           </Link>
         </div>
       </section>
 
-      {/* Modal: Expanded profile */}
+      {/* 🌿 Modal */}
       <AnimatePresence>
         {selectedMember && (
           <motion.div
@@ -148,30 +173,34 @@ export default function OurTeamBlueTemplate() {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 40, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl border border-blue-200"
+              className="relative w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl border-4 border-emerald-500"
               style={{
-                backgroundImage: selectedMember.backgroundImage || undefined,
+                backgroundImage: selectedMember.backgroundImage,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
             >
-              <div className="absolute inset-0 bg-gradient-to-b from-blue-900/85 via-blue-900/75 to-blue-900/90" />
-              <div className="relative p-6 sm:p-10 text-blue-50">
+              <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/85 via-emerald-900/75 to-emerald-900/90" />
+
+              <div className="relative p-6 sm:p-10 text-emerald-50">
+
                 <div className="flex flex-col sm:flex-row items-center gap-5">
                   <img
                     src={selectedMember.image}
                     alt={selectedMember.name}
-                    className="w-28 h-28 rounded-2xl object-cover border-4 border-white/80 shadow-lg"
+                    className="w-28 h-28 rounded-2xl object-cover border-4 border-white/80 shadow-xl"
                   />
                   <div className="text-center sm:text-left">
-                    <h3 className="text-2xl sm:text-3xl font-extrabold">
+                    <h3 className="text-3xl font-serif font-bold">
                       {selectedMember.name}
                     </h3>
-                    <p className="text-blue-200 font-medium">{selectedMember.role}</p>
+                    <p className="text-emerald-200 font-medium">
+                      {selectedMember.role}
+                    </p>
                   </div>
                 </div>
 
-                <div className="mt-6 max-h-64 overflow-y-auto rounded-2xl bg-white/90 p-4 text-blue-900 leading-7">
+                <div className="mt-6 max-h-64 overflow-y-auto rounded-2xl bg-white/90 p-4 text-emerald-900 leading-7">
                   {selectedMember.bio.split("\n").map((line, idx) => (
                     <p key={idx} className="mb-3">
                       {line}
@@ -179,28 +208,29 @@ export default function OurTeamBlueTemplate() {
                   ))}
                 </div>
 
-                <div className="mt-6 flex flex-wrap items-center justify-end gap-3">
+                <div className="mt-6 flex items-center justify-end gap-4">
                   <button
                     onClick={() => setSelectedMember(null)}
-                    className="rounded-xl px-5 py-2.5 font-semibold bg-white text-blue-900 border border-blue-200 hover:bg-blue-50"
+                    className="rounded-xl px-5 py-2.5 font-semibold bg-white text-emerald-900 border border-emerald-200 hover:bg-emerald-50"
                   >
                     Close
                   </button>
                   <Link
                     to="/contact"
-                    className="rounded-xl px-5 py-2.5 font-semibold bg-blue-200/90 text-blue-900 hover:bg-blue-200"
+                    className="rounded-xl px-5 py-2.5 font-semibold bg-emerald-200/90 text-emerald-900 hover:bg-emerald-200"
                   >
                     Contact
                   </Link>
                 </div>
+
               </div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      <footer className="text-center text-blue-200/80 pb-10">
-        <p className="font-semibold tracking-wide">Built with care • Ready for any industry</p>
+      <footer className="text-center text-emerald-200/80 pb-10 font-medium tracking-wide">
+        © Amara’s Photo Hut — Capturing Life, Nature, and Moments 🌿
       </footer>
     </div>
   );

@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PhotoSlider from "./PhotoSlider";
+import { FaFacebook, FaInstagram, FaEnvelope } from "react-icons/fa";
 
 export default function HomePage() {
   return (
-    <div className="relative text-center min-h-screen pb-8 bg-gradient-to-b from-emerald-900 via-green-900 to-stone-900">
+    <div className="relative text-center min-h-screen  bg-gradient-to-b from-emerald-900 via-green-900 to-stone-900">
       {/* Photo Slider Section */}
       <div className="relative">
         <PhotoSlider />
@@ -99,6 +100,90 @@ export default function HomePage() {
           </Link>
         </div>
       </div>
+      <section className="bg-gradient-to-b from-stone-900 via-green-900 to-emerald-900 text-emerald-100 py-8 pb-10 border-t-4 border-emerald-500/40 shadow-inner">
+  <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 
+                  divide-y divide-emerald-700/40 lg:divide-y-0 lg:divide-x lg:divide-emerald-700/40">
+
+    {/* Studio Info */}
+    <div className="pr-0 lg:pr-6 text-center lg:text-left py-4">
+      <h3 className="text-xl font-serif font-bold text-emerald-300 border-b-2 border-emerald-400 inline-block pb-1 mb-3">
+        Amara’s Photo Hut
+      </h3>
+      <p className="text-sm leading-relaxed text-emerald-200/90">
+        Capturing life, nature, and meaningful moments through warm, natural-light photography.
+        <br />
+        Every image tells a story. 🌿
+      </p>
+    </div>
+
+    {/* Quick Links */}
+    <div className="pt-6 sm:pt-0 lg:px-6 text-center lg:text-left">
+      <h4 className="text-lg font-semibold text-emerald-100 mb-3">
+        Quick Links
+      </h4>
+      <ul className="grid grid-cols-2 gap-2 text-sm">
+        <li><Link to="/about" className="hover:text-emerald-300">About</Link></li>
+        <li><Link to="/services" className="hover:text-emerald-300">Services</Link></li>
+        <li><Link to="/ourteam" className="hover:text-emerald-300">Our Team</Link></li>
+        <li><Link to="/gallery" className="hover:text-emerald-300">Gallery</Link></li>
+        <li><Link to="/contact" className="hover:text-emerald-300">Contact</Link></li>
+      </ul>
+    </div>
+
+    {/* Contact Info */}
+    <div className="pt-6 sm:pt-0 lg:pl-6 text-center lg:text-left">
+      <h4 className="text-lg font-semibold text-emerald-100 mb-3">
+        Get in Touch
+      </h4>
+      <p className="text-sm">📍 Natureview, USA</p>
+      <p className="text-sm mt-1">
+        📧{" "}
+        <a
+          href="mailto:amara@example.com"
+          className="hover:text-emerald-300 underline"
+        >
+          amara@example.com
+        </a>
+      </p>
+
+      {/* Social Icons */}
+      <div className="flex justify-center lg:justify-start items-center space-x-5 mt-6 border-t pt-3 border-emerald-500/40">
+        <a
+          href="https://www.instagram.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-emerald-300"
+        >
+          <FaInstagram className="text-2xl" />
+        </a>
+
+        <a
+          href="https://www.facebook.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-emerald-300"
+        >
+          <FaFacebook className="text-2xl" />
+        </a>
+
+        <a
+          href="mailto:amara@example.com"
+          className="hover:text-emerald-300"
+        >
+          <FaEnvelope className="text-2xl" />
+        </a>
+      </div>
+    </div>
+  </div>
+
+  {/* Bottom Bar */}
+  <div className="mt-8 text-center text-xs text-emerald-300/70">
+    <Link to="/privacy" className="hover:text-emerald-200">
+      Privacy Policy
+    </Link>
+  </div>
+</section>
+
     </div>
   );
 }
