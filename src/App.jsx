@@ -9,6 +9,7 @@ import ContactPageTemplate from "./Contact";
 import Gallery from "./Gallery";
 import AdminLogin from "./AdminLogin";
 import Reviews from "./Reviews";
+import AdminDashboard from "./AdminDashboard";
 function App() {
   return (
     <Router>
@@ -23,6 +24,7 @@ function App() {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/login" element={<AdminLogin />} />
         <Route path="/reviews" element={<Reviews />} />
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
       </Routes>
     </Router>
   );
