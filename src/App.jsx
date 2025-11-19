@@ -8,6 +8,7 @@ import OurTeam from "./OurTeam";
 import ContactPageTemplate from "./Contact";
 import Gallery from "./Gallery";
 import AdminLogin from "./AdminLogin";
+import Reviews from "./Reviews";
 function App() {
   return (
     <Router>
@@ -21,6 +22,7 @@ function App() {
         <Route path="/contact" element={<ContactPageTemplate />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/login" element={<AdminLogin />} />
+        <Route path="/reviews" element={<Reviews />} />
       </Routes>
     </Router>
   );
